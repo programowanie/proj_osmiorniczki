@@ -1,12 +1,14 @@
 #pragma once
 
 #include <string>
-
+#include <vector>
 class MP
 {
 private:
 	std::string _name;
 	int _left,_right,_support,_erudition;
+	static void init();
+	static std::vector <std::string> names_left,names_right;
 public:
 	MP();
 

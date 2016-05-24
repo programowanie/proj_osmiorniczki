@@ -1,10 +1,12 @@
 #pragma once
 
+#include <string>
+
 class MP
 {
 private:
 	std::string _name;
-	int _left,_right,_support;
+	int _left,_right,_support,_erudition;
 public:
 	MP();
 

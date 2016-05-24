@@ -10,7 +10,7 @@ private:
 	static void init();
 	static std::vector <std::string> names_left,names_right;
 public:
-	MP();
+	MP(int,int);
 
 	int left(){return _left;}
 	int right(){return _right;}

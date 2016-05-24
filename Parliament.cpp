@@ -6,5 +6,5 @@ Parliament::Parliament(int MPs,float left_support,float right_support):
 	_porozumienie_oblakanych(MPs,left_support),
 	_patrioci_i_spiski(MPs,right_support)
 {
-	std::cout << "Niech zyje Konstytucja!!!\n\n\n\n"<<std::endl;
+	std::cout << "Niech zyje Konstytucja!!!"<<std::endl;
 }

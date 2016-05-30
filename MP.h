@@ -2,24 +2,31 @@
 
 #include <string>
 #include <vector>
-void ofile(std::string, std::vector <std::string>)
+//void ofile(std::string, std::vector <std::string>);?????
 
 class MP
 {
+	friend class Party;
 private:
 	std::string _name;
 	int _left,_right,_support,_erudition;
-	static void init();
 	static std::vector <std::string> names_left,names_right;
+	static std::vector < std::vector<int> > skills_right,skills_left;
+	
+	static void init();
+	void decision();
+	
 public:
-	MP(int,int);
+	MP(int);
 
 	int left(){return _left;}
 	int right(){return _right;}
 	int support(){return _support;}
 	std::string name(){return _name;} 
 	std::string description();
-	void decision();
+	//void (*)() rdecision();
+	
+	
 
 
 };

@@ -7,13 +7,11 @@
 Party::Party(int MPs,float support):
 _number_of_MPs( number_of_MPs(MPs,support) ), _support(support)
 {
-	static int s=0;
 	for(int i=0;i<_number_of_MPs;i++)
 	{
-		MP posel(i,s);
+		MP posel(i);
 		_vec_of_MPs.push_back(posel); 
 	}
-	s++;
 	std::cout<<"Tylko POPIS\n";
 }
 

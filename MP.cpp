@@ -19,9 +19,10 @@ void ofile(std::string txt,std::vector <std::string> &names)
 		while(std::getline(file,text))
 			names.push_back(text);
 	i++;	
+	file.close();
 }
 
-void oofile(std::string txt,std::vector <std::vector<int>> &skills)
+void oofile(std::string txt,std::vector < std::vector <int> > &skills)
 {
 	static int j=1;
 	std::string line;
@@ -32,7 +33,7 @@ void oofile(std::string txt,std::vector <std::vector<int>> &skills)
 	else
 		while(std::getline(file,line))//pobieram linie z pliku
 		{
-		/*	std::string temporary;//bufor pomocniczny
+			std::string temporary;//bufor pomocniczny
 			for(int i=0;line[i]!=0;i++)//zbieram literki az do konca lini
 			{
 				if( (line[i]>='0' && line[i]<='9') || line[i]=='.')//liczby skladam z ciagu cyfr i spacji
@@ -48,7 +49,7 @@ void oofile(std::string txt,std::vector <std::vector<int>> &skills)
 						case 2:{skills[i][2]==stoi(temporary);}break;
 					}
 				}
-			}*/
+			}
 		}
 	j++;	
 }
@@ -63,8 +64,6 @@ MP::MP(int i)
 	else
 		_name=names_left[i];
 	std::cout<<"Dieta ";std::cout<<_name<<std::endl;
-	//------------------
-
 	x++;
 }
 
@@ -81,8 +80,8 @@ void MP::init()
 {
 	ofile("namesp.dat",names_right);
 	ofile("namesl.dat",names_left);
-	oofile("skillsp.dat",skills_right);
 	oofile("skillsl.dat",skills_left);
+	oofile("skillsp.dat",skills_right);
 }
 
 void MP::decision()

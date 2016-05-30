@@ -8,3 +8,11 @@ Parliament::Parliament(int MPs,float left_support,float right_support):
 {
 	std::cout << "Niech zyje Konstytucja!!!"<<std::endl;
 }
+
+Party * Parliament::ruling_party()
+{
+	if(_patrioci_i_spiski>_porozumienie_oblakanych)
+		_ruling_party=& _patrioci_i_spiski;
+	else
+		_ruling_party=& _porozumienie_oblakanych;
+}

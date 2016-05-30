@@ -2,6 +2,8 @@
 
 #include <string>
 #include <vector>
+void ofile(std::string, std::vector <std::string>)
+
 class MP
 {
 private:
@@ -17,6 +19,7 @@ public:
 	int support(){return _support;}
 	std::string name(){return _name;} 
 	std::string description();
+	void decision();
 
 
 };

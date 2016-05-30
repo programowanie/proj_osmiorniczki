@@ -2,8 +2,25 @@
 #include <string>
 #include <fstream>
 #include <iterator>
+#include <cstdlib>
+#include <ctime>
 #include <stdlib.h>
 #include "MP.h"
+
+void ofile(std::string txt,
+	std::vector <std::string> &names)
+{
+	static int i=1;
+	std::string text;
+	std::fstream file;
+	file.open(txt,std::ios::in);
+	if(!file.good())
+	{std::cout<<"File "<< i << " is not opened\n";}
+	else
+		while(std::getline(file,text))
+			names.push_back(text);
+	i++;	
+}
 
 std::vector <std::string> MP::names_right,MP::names_left;
 MP::MP(int i,int s)
@@ -27,28 +44,13 @@ std::string MP::description()
 
 void MP::init()
 {
-	std::string text;
-	std::fstream file1;
-	file1.open("namesp.dat",std::ios::in);
-	if(!file1.good()){std::cout<<"File1 is not opened\n";}
-	else
-		while(std::getline(file1,text))
-			names_right.push_back(text);
-	std::fstream file2;
-	file2.open("namesl.dat",std::ios::in);
-	if(!file2.good()){std::cout<<"File2 is not opened\n";}
-	else
-		while(std::getline(file2,text))
-			names_left.push_back(text);
+	ofile("namesp.dat",names_right);
+	ofile("namesl.dat",names_left);
+}
 
-	/*std::ifstream file1("namesl.dat");
-	copy(std::istream_iterator<std::string>(file1),
-		std::istream_iterator<std::string>(),
-		back_inserter(names_left));
-	file1.close();
-	std::ifstream file2("namesp.dat");
-	copy(std::istream_iterator<std::string>(file2),
-		std::istream_iterator<std::string>(),
-		back_inserter(names_right));
-	file2.close();*/
+void MP::decision()
+{
+	srand(time(NULL));
+
+
 }

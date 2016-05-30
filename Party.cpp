@@ -4,6 +4,22 @@
 #include <ctime>
 #include "Party.h"
 
+int average(std::vector<MP> vec,int amount,int id)
+{
+	int sum=0;
+	for(int i=0;i<amount;i++)
+	{
+		if(id==0)
+			sum+=vec[i].left();
+		else if(id==1)
+			sum+=vec[i].right();
+		else if(id==2)
+			sum+=vec[i].erudition();
+	}
+	return sum/amount;
+
+}
+
 Party::Party(int MPs,float support):
 _number_of_MPs( number_of_MPs(MPs,support) ), _support(support)
 {
@@ -12,6 +28,9 @@ _number_of_MPs( number_of_MPs(MPs,support) ), _support(support)
 		MP posel(i);
 		_vec_of_MPs.push_back(posel); 
 	}
+	_left=average(_vec_of_MPs,_number_of_MPs,0);
+	_right=average(_vec_of_MPs,_number_of_MPs,1);
+	_erudition=average(_vec_of_MPs,_number_of_MPs,2);
 	std::cout<<"Tylko POPIS\n";
 }
 
@@ -37,7 +56,5 @@ bool Party::operator >(Party & party)
 	if(this->support()>party.support())
 		return 1;
 	return 0;
-
-
 }
 

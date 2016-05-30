@@ -89,6 +89,6 @@ void MP::init()
 void MP::decision()
 {
 	srand(time(NULL));
-
+	
 
 }

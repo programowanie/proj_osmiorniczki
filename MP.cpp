@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include "MP.h"
 
-void ofile(std::string txt,std::vector <std::string> &names)
+void MP::ofile(std::string txt,std::vector <std::string> &names)
 {
 	static int i=1;
 	std::string text;
@@ -22,7 +22,7 @@ void ofile(std::string txt,std::vector <std::string> &names)
 	file.close();
 }
 
-void oofile(std::string txt,std::vector < std::vector <int> > &skills)
+void MP::oofile(std::string txt,std::vector <std::vector <int> > &skills)
 {
 	static int j=1;
 	std::string line;
@@ -51,6 +51,7 @@ void oofile(std::string txt,std::vector < std::vector <int> > &skills)
 				}
 			}
 		}
+	file.close();
 	j++;	
 }
 
@@ -80,8 +81,9 @@ void MP::init()
 {
 	ofile("namesp.dat",names_right);
 	ofile("namesl.dat",names_left);
-	oofile("skillsl.dat",skills_left);
-	oofile("skillsp.dat",skills_right);
+	//ofile("skillsp.dat",x);
+	//oofile("skillsl.dat",skills_left);
+	//oofile("skillsp.dat",skills_right);
 }
 
 void MP::decision()

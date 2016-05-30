@@ -10,7 +10,7 @@ int main()
 	Party *ruling_party=Sejm.ruling_party();
 	for(int i=0;i<40;i++)
 	{
-		ruling_party->decision();
+		//ruling_party->decision();
 
 	}
 }

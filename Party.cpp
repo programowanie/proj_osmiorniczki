@@ -1,4 +1,4 @@
-#include <iostream>
+#include <iostream>//vector MP.h
 #include <cmath>
 #include <cstdlib>
 #include <ctime>
@@ -23,15 +23,44 @@ int average(std::vector<MP> vec,int amount,int id)
 Party::Party(int MPs,float support):
 _number_of_MPs( number_of_MPs(MPs,support) ), _support(support)
 {
+	static int s=0;
 	for(int i=0;i<_number_of_MPs;i++)
 	{
-		MP posel(i);
+		MP posel(i,s);
 		_vec_of_MPs.push_back(posel); 
 	}
+	if(s==0)
+		_name="Porozumienie Oblakanych";
+	else 
+		if(s==1)
+			_name="Patrioci i Spiski";
 	_left=average(_vec_of_MPs,_number_of_MPs,0);
 	_right=average(_vec_of_MPs,_number_of_MPs,1);
 	_erudition=average(_vec_of_MPs,_number_of_MPs,2);
 	std::cout<<"Tylko POPIS\n";
+	s++;
+}
+
+Party::Party(const Party & old)
+{
+	_number_of_MPs=old._number_of_MPs;
+	_support=old._support;
+	int s;
+	if(old._name=="Porozumienie Oblakanych")
+		s=0;
+	else
+		if(old._name=="Patrioci i Spiski")
+			s=1;
+	for(int i=0;i<_number_of_MPs;i++)
+	{
+		MP posel(i,s);
+		_vec_of_MPs.push_back(posel); 
+	}
+	_left=old._left;
+	_right=old._right;
+	_erudition=old._erudition;
+	std::cout<<"Tylko POPIS XXX\n";
+
 }
 
 int Party::number_of_MPs(int MPs,float support)

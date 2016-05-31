@@ -2,13 +2,13 @@
 
 #include <string>
 #include <vector>
-//void ofile(std::string, std::vector <std::string>);?????
+
 class MP
 {
 friend class Party;
 private:
 	std::string _name;
-	int _left,_right,_support,_erudition;
+	int _left,_right,_erudition;//,_support
 	static std::vector <std::string> names_left,names_right,x;
 	static std::vector <std::vector <int>> skills_left,skills_right;
 
@@ -19,10 +19,10 @@ private:
 	//friend void ofile(std::string ,std::vector <std::string> &);
 	//friend void oofile(std::string ,std::vector <std::vector <int> > &);
 public:
-	MP(int);
+	MP(int,int);
 	int left(){return _left;}
 	int right(){return _right;}
-	int support(){return _support;}
+	//int support(){return _support;}
 	int erudition(){return _erudition;}
 	std::string name(){return _name;} 
 	std::string description();

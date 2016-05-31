@@ -31,30 +31,32 @@ void MP::oofile(std::string txt,std::vector <std::vector <int> > &skills)
 	if(!file.good())
 	{std::cout<<"File "<< j << " is not opened\n";}
 	else
+	{
+		int k=0;
 		while(std::getline(file,line))//pobieram linie z pliku
-		{
+		{	
 			std::string temporary;//bufor pomocniczny
-			for(int i=0;line[i]!=0;i++)//zbieram literki az do konca lini
+			std::vector <int> skill;
+			for(int i=0;line[i-1]!=0;i++)//zbieram literki az do konca lini
 			{
+				std::cout<<temporary<<" k "<<k<<" ";
 				if( (line[i]>='0' && line[i]<='9') || line[i]=='.')//liczby skladam z ciagu cyfr i spacji
-				{
+				{	
 					temporary.push_back(line[i]);
 				}
 				else
 				{
-					switch(i)
-					{
-						case 0:{skills[i][0]=stoi(temporary);}break;
-						case 1:{skills[i][1]=stoi(temporary);}break;
-						case 2:{skills[i][2]==stoi(temporary);}break;
-					}
+					skill.push_back(stoi(temporary));
+					temporary="";
 				}
-			}
+				skills.push_back(skill);
+			}std::cout<<"\n";
+			k++;
 		}
+	}	
 	file.close();
 	j++;	
 }
-
 
 std::vector <std::string> MP::names_right,MP::names_left;
 MP::MP(int i)
@@ -77,13 +79,13 @@ std::string MP::description()
 		+ "\t poparcie: " + to_string(_support);
 }
 
+std::vector <std::vector <int>> MP::skills_left,MP::skills_right;//!!!!!!!!!!!!!
 void MP::init()
 {
 	ofile("namesp.dat",names_right);
 	ofile("namesl.dat",names_left);
-	//ofile("skillsp.dat",x);
-	//oofile("skillsl.dat",skills_left);
-	//oofile("skillsp.dat",skills_right);
+	oofile("skillsl.dat",skills_left);
+	oofile("skillsp.dat",skills_right);
 }
 
 void MP::decision()

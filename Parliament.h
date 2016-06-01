@@ -15,5 +15,4 @@ public:
 	Party patrioci_i_spiski(){return _patrioci_i_spiski;}
 	Party ruling_party(){return _ruling_party;}
 	int MPs(){return _MPs;}
-	
 };

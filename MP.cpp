@@ -2,7 +2,6 @@
 #include <fstream>
 #include <iterator>
 #include <cstdlib>
-#include <ctime>
 #include "MP.h"
 
 void MP::ofile(std::string txt,std::vector <std::string> &names)
@@ -39,42 +38,33 @@ void MP::oofile(std::string txt,std::vector <std::vector <int> > &skills)
 			std::vector <int> skill;
 			for(int i=0;line[i-1]!=0;i++)//zbieram literki az do konca lini
 			{
-				//std::cout<<temporary<<" k "<<k<<" ";
 				if( (line[i]>='0' && line[i]<='9') || line[i]=='.')//liczby skladam z ciagu cyfr i spacji
 				{	
 					temporary.push_back(line[i]);	
 				}
 				else
 				{
-					skill.push_back(stoi(temporary));//if(i>5)std::cout<<" !!!! "<<skill[2]<<" ";//<<std::endl;
+					skill.push_back(stoi(temporary));
 					temporary="";
 				}
 			}
-			//std::cout<<skill[0]<<" "<<skill[1]<<" "<<skill[2]<<" ";
 			skills.push_back(skill);
-			//std::cout<<"\n";
 			k++;
 		}
-		/*for(int i=0;i<10;i++)
-		{
-			for(int j=0;j<3;j++)
-			{
-				std::cout<<skills[i][j]<<" ";
-			}
-			std::cout<<"\n";
-		}*/
 	}	
 	file.close();
 	j++;
 }
 
 std::vector <std::string> MP::names_right,MP::names_left;
-MP::MP(int i,int s)
+MP::MP(int i,int s)//,const Party * party):
+//_p_party(party)
 {
 	static int x=(init(),0);
 	if(s)
 	{
 		_name=names_right[i];
+		_party="Patrioci i Spiski";
 		_left=skills_right[i][0];
 		_right=skills_right[i][2];
 		_erudition=skills_right[i][2];
@@ -82,12 +72,12 @@ MP::MP(int i,int s)
 	else
 	{
 		_name=names_left[i];
+		_party="Porozumienie Oblakanych";
 		_left=skills_left[i][0];
 		_right=skills_left[i][2];
 		_erudition=skills_left[i][2];
 	}
-	std::cout<<"Dieta ";std::cout<<_name<<std::endl;
-
+	//std::cout<<"Dieta ";std::cout<<_name<<std::endl;
 	x++;
 }
 
@@ -107,26 +97,47 @@ void MP::init()
 	ofile("namesl.dat",names_left);
 	oofile("skillsl.dat",skills_left);
 	oofile("skillsp.dat",skills_right);
-	for(int i=0;i<10;i++)
-	{
-		//std::cout<<skills_right[i][0]<<std::endl;
-	}
 }
 
-void MP::decision()
+void MP::decision(int left,int right)//parametry partii left right
 {
-	srand(time(NULL));
+	static int i=1;
+	std::cout<<i<<": ";
 	int decision=rand()%101;
 	if(decision==0)
-		std::cout << _name << "cos sie popsulo i nie bylo mnie slychac." <<std::endl;
-	else 
-		if(decision>_left)
-			std::cout<< _name 
-				<<" masakruje lewaka z sila: "
-				<< _erudition << std::endl;
+		std::cout << _name << ": cos sie popsulo i nie bylo mnie slychac.\n\n\n" <<std::endl;
+	else
+	{ 
+		if(decision>_left)//_parametry MP
+		{//podejmujemy prawa decyzje ale jeszcze partia
+			int last_decision=rand()%201;
+			if(last_decision==0)
+				std::cout << _name << ": cos sie popsulo i nie bylo mnie slychac.\n\n\n" <<std::endl;
+			else
+				if(last_decision>left)
+					std::cout<< _name 
+						<<" masakruje lewaka z sila: "
+						<< _erudition << std::endl;
+				else
+					std::cout<< _name 
+						<<" odwoluje sie do LGBT i tolerancji z sila: "
+						<< _erudition << std::endl;
+		}
 		else 
-			std::cout<< _name 
-				<<" odwoluje sie do LGBT i tolerancji z sila: "
-				<< _erudition << std::endl;
-
+		{
+			int last_decision=rand()%201;
+			if(last_decision==0)
+				std::cout << _name << ": cos sie popsulo i nie bylo mnie slychac.\n\n\n" <<std::endl;
+			else
+				if(last_decision>right)
+					std::cout<< _name 
+						<<" odwoluje sie do LGBT i tolerancji z sila: "
+						<< _erudition << std::endl;
+				else
+					std::cout<< _name 
+						<<" masakruje lewaka z sila: "
+						<< _erudition << std::endl;
+		}
+	}
+	i++;
 }

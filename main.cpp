@@ -1,14 +1,17 @@
 #include <iostream>
+#include <ctime>
+#include <cstdlib>
 #include "Parliament.h"
 
 int main()
 {
+	srand(time(NULL));
 	int kadencja=1;
 	const float MPs=10;
 	const float left_support=49.1;
 	float right_support=100-left_support;
 	Parliament Sejm(MPs,left_support,right_support);
-	//Party ruling_party=Sejm.ruling_party();
+	Party ruling_party=Sejm.ruling_party();
 
 	std::cout<<"Witamy w sejmie " << kadencja << " kadencji!!!" <<std::endl
 		<<"\nSa z nami poslowie Porozumienia Oblakanych:\n"<<std::endl;
@@ -26,8 +29,9 @@ int main()
 	//Symulacja
 	for(int i=0;i<40;i++)
 	{
-		//ruling_party.decision();
+		ruling_party.decision();
 
 	}
+	std::cout<<"\n\n\n";
 	
 }

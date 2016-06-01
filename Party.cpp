@@ -1,7 +1,6 @@
 #include <iostream>//vector MP.h
 #include <cmath>
 #include <cstdlib>
-#include <ctime>
 #include "Party.h"
 
 int average(std::vector<MP> vec,int amount,int id)
@@ -18,6 +17,11 @@ int average(std::vector<MP> vec,int amount,int id)
 	}
 	return sum/amount;
 
+}
+
+Party::Party()
+{
+	std::cout<<"\n\t\t\t\t\t\tGIN\n";
 }
 
 Party::Party(int MPs,float support):
@@ -53,14 +57,13 @@ Party::Party(const Party & old)
 			s=1;
 	for(int i=0;i<_number_of_MPs;i++)
 	{
-		MP posel(i,s);
+		MP posel(i,s);//,this);
 		_vec_of_MPs.push_back(posel); 
 	}
 	_left=old._left;
 	_right=old._right;
 	_erudition=old._erudition;
 	std::cout<<"Tylko POPIS XXX\n";
-
 }
 
 int Party::number_of_MPs(int MPs,float support)
@@ -75,9 +78,8 @@ int Party::number_of_MPs(int MPs,float support)
 
 void Party::decision()
 {
-	srand(time(NULL));
 	int speaker=rand()%_number_of_MPs;
-	_vec_of_MPs[speaker].decision();
+	_vec_of_MPs[speaker].decision(_left,_right);
 }
 
 bool Party::operator >(Party & party)

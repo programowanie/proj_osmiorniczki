@@ -2,9 +2,11 @@
 #include <ctime>
 #include <cstdlib>
 #include "Parliament.h"
+#include "Society.h"
 
 int main()
 {
+	std::cout<<"Testy konstruktorow mozna sobie pominac :) \n\n\n";
 	srand(time(NULL));
 	int kadencja=1;
 	const float MPs=10;
@@ -12,6 +14,7 @@ int main()
 	float right_support=100-left_support;
 	Parliament Sejm(MPs,left_support,right_support);
 	Party ruling_party=Sejm.ruling_party();
+	Society Polska;
 
 	std::cout<<"Witamy w sejmie " << kadencja << " kadencji!!!" <<std::endl
 		<<"\nSa z nami poslowie Porozumienia Oblakanych:\n"<<std::endl;
@@ -30,7 +33,12 @@ int main()
 	for(int i=0;i<40;i++)
 	{
 		ruling_party.decision();
-
+		Polska.symulate();
+		if(Polska.social_mood()<=0)
+		{
+			Sejm.set_fire();
+			break;
+		}
 	}
 	std::cout<<"\n\n\n";
 	

@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 //#include "Party.h" //czemu wywala blad!!!!
-
+//class Party; na forum mowia ze tak a to u gory do cpp ale WHY
 class MP
 {
 friend class Party;

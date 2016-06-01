@@ -14,5 +14,6 @@ public:
 	Party porozumienie_oblakanych(){return _porozumienie_oblakanych;}
 	Party patrioci_i_spiski(){return _patrioci_i_spiski;}
 	Party ruling_party(){return _ruling_party;}
+	void set_fire();
 	int MPs(){return _MPs;}
 };

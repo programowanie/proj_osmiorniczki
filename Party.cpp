@@ -2,6 +2,7 @@
 #include <cmath>
 #include <cstdlib>
 #include "Party.h"
+																#include "Parliament.h"
 
 int average(std::vector<MP> vec,int amount,int id)
 {
@@ -19,13 +20,13 @@ int average(std::vector<MP> vec,int amount,int id)
 
 }
 
-Party::Party()
+Party::Party()											//:_sejm(NULL)
 {
-	std::cout<<"\n\t\t\t\t\t\tGIN\n";
+	//std::cout<<"\n\t\t\t\t\t\tGIN\n";
 }
 
-Party::Party(int MPs,float support):
-_number_of_MPs( number_of_MPs(MPs,support) ), _support(support)
+Party::Party(int MPs,float support,const Parliament * sejm):
+_number_of_MPs( number_of_MPs(MPs,support) ), _support(support),_sejm(sejm)
 {
 	static int s=0;
 	for(int i=0;i<_number_of_MPs;i++)
@@ -63,7 +64,7 @@ Party::Party(const Party & old)
 	_left=old._left;
 	_right=old._right;
 	_erudition=old._erudition;
-	std::cout<<"Tylko POPIS XXX\n";
+	//std::cout<<"Tylko POPIS XXX\n";
 }
 
 int Party::number_of_MPs(int MPs,float support)
@@ -82,7 +83,7 @@ void Party::decision()
 	_vec_of_MPs[speaker].decision(_left,_right);
 }
 
-bool Party::operator >(Party & party)
+bool Party::operator >(Party & party)//czemu nie moze byc const!!!!
 {
 	if(this->support()>party.support())
 		return 1;

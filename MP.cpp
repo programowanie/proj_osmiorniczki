@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iterator>
 #include <cstdlib>
+
 #include "MP.h"
 
 void MP::ofile(std::string txt,std::vector <std::string> &names)
@@ -57,8 +58,7 @@ void MP::oofile(std::string txt,std::vector <std::vector <int> > &skills)
 }
 
 std::vector <std::string> MP::names_right,MP::names_left;
-MP::MP(int i,int s)//,const Party * party):
-//_p_party(party)
+MP::MP(int i,int s)
 {
 	static int x=(init(),0);
 	if(s)
@@ -99,45 +99,67 @@ void MP::init()
 	oofile("skillsp.dat",skills_right);
 }
 
-void MP::decision(int left,int right)//parametry partii left right
+int MP::decision(int left,int right)//parametry partii left right
 {
 	static int i=1;
 	std::cout<<i<<": ";
 	int decision=rand()%101;
+	int event;
 	if(decision==0)
+	{
 		std::cout << _name << ": cos sie popsulo i nie bylo mnie slychac.\n\n\n" <<std::endl;
+		event=0;		
+	}
 	else
 	{ 
 		if(decision>_left)//_parametry MP
 		{//podejmujemy prawa decyzje ale jeszcze partia
 			int last_decision=rand()%201;
 			if(last_decision==0)
+			{
 				std::cout << _name << ": cos sie popsulo i nie bylo mnie slychac.\n\n\n" <<std::endl;
+				event=0;
+			}
 			else
 				if(last_decision>left)
+				{
+					event=1;
 					std::cout<< _name 
 						<<" masakruje lewaka z sila: "
 						<< _erudition << std::endl;
+				}
 				else
+				{
+					event=2;
 					std::cout<< _name 
 						<<" odwoluje sie do LGBT i tolerancji z sila: "
 						<< _erudition << std::endl;
+				}
 		}
 		else 
 		{
 			int last_decision=rand()%201;
-			if(last_decision==0)
+			if(last_decision==0){
+				event=0;
 				std::cout << _name << ": cos sie popsulo i nie bylo mnie slychac.\n\n\n" <<std::endl;
+			}
 			else
 				if(last_decision>right)
+				{
+					event=2;
 					std::cout<< _name 
 						<<" odwoluje sie do LGBT i tolerancji z sila: "
 						<< _erudition << std::endl;
+				}
 				else
+				{
+					event=1;
 					std::cout<< _name 
 						<<" masakruje lewaka z sila: "
 						<< _erudition << std::endl;
+				}
 		}
 	}
 	i++;
+	return event;
 }

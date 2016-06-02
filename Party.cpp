@@ -2,7 +2,7 @@
 #include <cmath>
 #include <cstdlib>
 #include "Party.h"
-																#include "Parliament.h"
+#include "Parliament.h"
 
 int average(std::vector<MP> vec,int amount,int id)
 {
@@ -17,10 +17,9 @@ int average(std::vector<MP> vec,int amount,int id)
 			sum+=vec[i].erudition();
 	}
 	return sum/amount;
-
 }
 
-Party::Party()											//:_sejm(NULL)
+Party::Party()
 {
 	//std::cout<<"\n\t\t\t\t\t\tGIN\n";
 }
@@ -42,7 +41,7 @@ _number_of_MPs( number_of_MPs(MPs,support) ), _support(support),_sejm(sejm)
 	_left=average(_vec_of_MPs,_number_of_MPs,0);
 	_right=average(_vec_of_MPs,_number_of_MPs,1);
 	_erudition=average(_vec_of_MPs,_number_of_MPs,2);
-	std::cout<<"Tylko POPIS\n";
+	//std::cout<<"Tylko POPIS\n";
 	s++;
 }
 
@@ -77,15 +76,16 @@ int Party::number_of_MPs(int MPs,float support)
 	return x;
 }
 
-void Party::decision()
+int Party::decision()
 {
 	int speaker=rand()%_number_of_MPs;
-	_vec_of_MPs[speaker].decision(_left,_right);
+	int decision2=_vec_of_MPs[speaker].decision(_left,_right);
+	return decision2;
 }
 
-bool Party::operator >(Party & party)//czemu nie moze byc const!!!!
+bool Party::operator >(const Party & party)
 {
-	if(this->support()>party.support())
+	if(this->_support>party._support)
 		return 1;
 	return 0;
 }

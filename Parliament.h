@@ -16,4 +16,5 @@ public:
 	Party ruling_party(){return _ruling_party;}
 	void set_fire();
 	int MPs(){return _MPs;}
+	~Parliament(){}
 };

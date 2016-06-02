@@ -22,4 +22,5 @@ void  Parliament::ruling_party2()
 void Parliament::set_fire()
 {
 	std::cout<<"\n\n\n\t\t\t\t\t\t\t SEJM SPALONO!!! \n";
+	this->~Parliament();
 }

@@ -9,7 +9,7 @@ Society::Society()
 	_right=100-_left;
 }
 
-void Society::symulate(int decision)
+void Society::symulate(int decision,int erudition)
 {
 	int change_o,change_m;
 	if(decision==0)
@@ -49,5 +49,18 @@ void Society::symulate(int decision)
 	}
 	_left+=change_o;
 	_right=100-_left;
+	if(_social_mood<=0)
+	{
+		std::cout<<"\t Nastroj: " << _social_mood;
+		int last_chance=(rand()%100)+1;
+		if(last_chance<=erudition)
+		{
+			int x=(rand()%5)+1;
+			std::cout<<"\tLAST CHANCE!!! " <<x<<"\n";
+			_social_mood+=x;
+		}
+		else
+			std::cout<<"\t NIESTETY PECH!!!\n";
+	}
 	std::cout<<"\t Nastroj: " << _social_mood<<" Lewactwo: "<< _left<< " Kaczyzm: "<< _right<<" \n";
 }

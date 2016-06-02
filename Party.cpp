@@ -76,10 +76,10 @@ int Party::number_of_MPs(int MPs,float support)
 	return x;
 }
 
-int Party::decision()
+int * Party::decision()
 {
 	int speaker=rand()%_number_of_MPs;
-	int decision2=_vec_of_MPs[speaker].decision(_left,_right);
+	int * decision2=_vec_of_MPs[speaker].decision(_left,_right);
 	return decision2;
 }
 

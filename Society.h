@@ -10,5 +10,5 @@ public:
 
 	int social_mood(){return _social_mood;}
 
-	void symulate(int);
+	void symulate(int,int);
 };

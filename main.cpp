@@ -36,8 +36,8 @@ int main()
 //Symulacja
 	for(int i=0;i<60;i++)
 	{
-		int decision=ruling_party.decision();
-		Polska.symulate(decision);
+		int * decision=ruling_party.decision();
+		Polska.symulate(decision[0],decision[1]);
 		if(Polska.social_mood()<=0)
 		{
 			Sejm.set_fire();

@@ -32,7 +32,7 @@ public:
 	int number_of_MPs(){return _number_of_MPs;}
 	std::vector<MP> vec_of_MPs(){return _vec_of_MPs;}
 
-	int decision();
+	int * decision();
 
 	bool operator >(const Party &);
 };

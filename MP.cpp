@@ -99,7 +99,7 @@ void MP::init()
 	oofile("skillsp.dat",skills_right);
 }
 
-int MP::decision(int left,int right)//parametry partii left right
+int * MP::decision(int left,int right)//parametry partii left right
 {
 	static int i=1;
 	std::cout<<i<<": ";
@@ -161,5 +161,8 @@ int MP::decision(int left,int right)//parametry partii left right
 		}
 	}
 	i++;
-	return event;
+	static int array[2];
+	array[0]=event;
+	array[1]=_erudition;
+	return array;
 }

@@ -9,11 +9,11 @@ class MP
 	friend class Party;
 private:
 	std::string _name,_party;
-	int _left,_right,_erudition;//,_support
+	int _left,_right,_erudition;//float _support
 	static std::vector <std::string> names_left,names_right,x;
 	static std::vector <std::vector <int>> skills_left,skills_right;
 
-	int decision(int, int);
+	int * decision(int, int);
 	static void init();
 	static void ofile(std::string ,std::vector <std::string> &);
 	static void oofile(std::string ,std::vector <std::vector <int> > &);
